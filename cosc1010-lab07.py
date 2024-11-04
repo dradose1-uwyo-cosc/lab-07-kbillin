@@ -1,9 +1,9 @@
-# Your Name Here
+# Kaden Billin
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
-# Sources, people worked with, help given to: 
+# 10-31-2024
+# Lab 07
+# Lab Section: 12
+# Sources, people worked with, help given to:
 # your
 # comments
 # here
@@ -17,11 +17,30 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
-factorial = 1
+def initial():
+    upper = input("Please enter an upper bound: ")
 
-print(f"The result of the factorial based on the given bound is {factorial}")
+    if upper.isdigit() == True and int(upper) > 0:
+        print("The inputted upper bound is: "+upper)
+        return int(upper)
+    else:
+        print("Please enter a positive number!")
+        return initial()
+    
+upper_bound = initial()
+
+def fact():
+    x = 1
+    for i in range (1,int(upper_bound)+1):
+        x *= i
+    return int(x)
+
+factorial = fact()
+
+print(f"The result of the factorial based on the given bound is: {factorial}")
 
 print("*"*75)
+
 # Create a while loop that prompts a user for input of an integer values
 # Sum all inputs. When the user enters 'exit' (regardless of casing) end the loop
 # Upon ending the loop print the sum
@@ -34,14 +53,21 @@ print("*"*75)
     # This means you will need to have a check to see if `-` is first character of the string before you check if it is numerical
     # If it is in the string you will need to remove the `-` character, and know that it will be a negative number, so a subtraction from the overall sum
     # I recommend checking out: https://www.w3schools.com/python/ref_string_replace.asp to figure out how one may remove a character from a string
-# All this together means you will have an intensive while loop that includes multiple if statements, likely with some nesting 
-# The sum should start at 0 
+# All this together means you will have an intensive while loop that includes multiple if statements, likely with some nesting
 
-num_sum = 0 
+inputs = 0
 
-print(f"Your final sum is {num_sum}")
+while True:
+    inp = input("Please enter input here (type 'exit' when you are finished): ")
+    if inp.lower() == "exit":
+        break
+    elif inp.lstrip("-").isdigit():
+        inputs += int(inp)
+
+print(f"Your final sum is: {inputs}")
 
 print("*"*75)
+
 # Now you will be creating a two operand calculator
 # It will support the following operators: +,-,/,*,% 
 # So accepted input is of the form `operand operator operand` 
@@ -59,4 +85,19 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
-        
+calculate = input("Please enter a two operand operation here: ")
+if "+" in calculate:
+    thing1 = calculate.split("+")
+    print(int(calculate.split("+")[0]) + int(calculate.split("+")[1]))
+elif "-" in calculate:
+    thing2 = calculate.split("-")
+    print(int(calculate.split("-")[0]) - int(calculate.split("-")[1]))
+elif "/" in calculate:
+    thing3 = calculate.split("/")
+    print(int(calculate.split("/")[0]) / int(calculate.split("/")[1]))
+elif "*" in calculate:
+    thing4 = calculate.split("*")
+    print(int(calculate.split("*")[0]) * int(calculate.split("*")[1]))
+elif "%" in calculate:
+    thing5 = calculate.split("%")
+    print(int(calculate.split("%")[0]) % int(calculate.split("%")[1]))
